@@ -1,14 +1,19 @@
 import os
 from pathlib import Path
 
+from django.core.exceptions import ImproperlyConfigured
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-j_89af+30&&4qm*8z9_(^zz8p4-ho8z_m6ylm0s$h!-p@on1_^'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+if not SECRET_KEY:
+    raise ImproperlyConfigured('Empty SECRET_KEY')
 
-ALLOWED_HOSTS = []
+DEBUG = False
+
+ALLOWED_HOSTS = ['oxo-abc.zapto.org']
 
 
 # Application definition
